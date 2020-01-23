@@ -3,13 +3,13 @@
 @{
     Layout = "_Layout";
 }
-<h1>Lucky Spin</h1>
 <h2>Pick your Number</h2>
-<form action="/Spinner/Index" method="post">
+<form asp-route="Spinner/Index">
     <fieldset>
-        <label><input placeholder=" Your First Name" name="FirstName" /><span></span></label>
+<!-- TODO: Add tag helpers attributes to the <input>, <select> and <span> elements -->
+        <label><input type="text" /><span></span></label>
         <label>
-            <select name="Luck">
+            <select>
                 <option selected disabled>Luck Number</option>
                 <option>1</option>
                 <option>2</option>
