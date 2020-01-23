@@ -10,13 +10,16 @@ namespace LuckySpin.Controllers
     public class SpinnerController : Controller
     {
         Random random;
+        //TODO: Create a new instance variable of type RepoService 
 
         /***
          * Constructor
+         * TODO: Inject a RepoService object in the Constructor parameter
+         *       Set the instance variable's initial value using the parameter 
          */
         public SpinnerController()
         {
-            random = new Random();
+            random = new Random(); // Notice "random" is not injected, just created here
         }
 
         /***
@@ -44,7 +47,7 @@ namespace LuckySpin.Controllers
             // Create a Spin with its data
             Spin spin = new Spin
             {
-                Luck = player.Luck,
+                Luck = player.LuckyNumber,
                 A = random.Next(1, 10),
                 B = random.Next(1, 10),
                 C = random.Next(1, 10)
@@ -55,6 +58,7 @@ namespace LuckySpin.Controllers
             ViewBag.Display = spin.IsWinner ? "block": "none";
             ViewBag.FirstName = player.FirstName;
 
+            //TODO: add the spin to the Spin Repository
             return View(spin);
         }
 
