@@ -11,15 +11,16 @@ namespace LuckySpin.Controllers
     {
         Random random;
         //TODO: Create a new instance variable of type RepoService 
-
+        RepoService repoService = new RepoService();
         /***
          * Constructor
          * TODO: Inject a RepoService object in the Constructor parameter
          *       Set the instance variable's initial value using the parameter 
          */
-        public SpinnerController()
+        public SpinnerController(RepoService RepoService)
         {
             random = new Random(); // Notice "random" is not injected, just created here
+            repoService = RepoService;
         }
 
         /***
@@ -35,8 +36,11 @@ namespace LuckySpin.Controllers
         [HttpPost]
         public IActionResult Index(Player player)
         {
-            if (ModelState.IsValid)            
-                return RedirectToAction("Spin", player);            
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Spin", player);
+            }
+
             return View();
         }
 
@@ -52,15 +56,19 @@ namespace LuckySpin.Controllers
                 Luck = player.LuckyNumber,
                 A = random.Next(1, 10),
                 B = random.Next(1, 10),
-                C = random.Next(1, 10)
+                C = random.Next(1, 10),
             };
             spin.IsWinner = (spin.A == spin.Luck || spin.B == spin.Luck || spin.C == spin.Luck);
+
 
             // Store some View data
             ViewBag.Display = spin.IsWinner ? "block": "none";
             ViewBag.FirstName = player.FirstName;
 
             //TODO: add the spin to the Spin Repository
+
+            repoService.AddSpins(spin);
+
             return View(spin);
         }
 
