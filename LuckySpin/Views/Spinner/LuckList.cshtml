@@ -1,0 +1,21 @@
+﻿@model LuckySpin.Models.Player
+
+@{
+    ViewData["Title"] = "LuckList";
+    Layout = "_Layout";
+}
+
+
+ 
+
+<h2>Here is the list of spins from each players</h2>
+<table>
+    <thead>
+        <tr>
+            <h2>Player's Information</h2>
+            <th>Name: @Model.FirstName</th>
+            <th>Chosen Lucky Number: </th>
+            <th></th>
+        </tr>
+    </thead>
+</table>

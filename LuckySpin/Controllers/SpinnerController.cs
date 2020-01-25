@@ -76,9 +76,11 @@ namespace LuckySpin.Controllers
          * List Action
          */
         [HttpGet]
-        public IActionResult LuckList()
+        public IActionResult LuckList(Spin spin)
         {
-            return View();
+            
+          
+            return View(spin);
         }
     }
 }
