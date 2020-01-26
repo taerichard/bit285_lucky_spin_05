@@ -11,7 +11,7 @@ namespace LuckySpin.Controllers
     {
         Random random;
         //TODO: Create a new instance variable of type RepoService 
-        RepoService repoService = new RepoService();
+        private RepoService _repoService = new RepoService();
         /***
          * Constructor
          * TODO: Inject a RepoService object in the Constructor parameter
@@ -20,7 +20,7 @@ namespace LuckySpin.Controllers
         public SpinnerController(RepoService RepoService)
         {
             random = new Random(); // Notice "random" is not injected, just created here
-            repoService = RepoService;
+            _repoService = RepoService;
         }
 
         /***
@@ -67,7 +67,7 @@ namespace LuckySpin.Controllers
 
             //TODO: add the spin to the Spin Repository
 
-            repoService.AddSpins(spin);
+            _repoService.AddSpins(spin);
 
             return View(spin);
         }
@@ -76,11 +76,10 @@ namespace LuckySpin.Controllers
          * List Action
          */
         [HttpGet]
-        public IActionResult LuckList(Spin spin)
+        public IActionResult LuckList()
         {
-            
-          
-            return View(spin);
+            IEnumerable<Spin> spins = _repoService.SpinRepository;
+            return View(spins);
         }
     }
 }

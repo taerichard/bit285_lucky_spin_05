@@ -17,6 +17,7 @@ namespace LuckySpin
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(new RepoService());
+
             services.AddTransient<LuckySpin.Models.TextTransformService>();
             services.AddMvc();
         }

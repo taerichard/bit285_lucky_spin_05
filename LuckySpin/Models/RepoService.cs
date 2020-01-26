@@ -7,13 +7,20 @@ namespace LuckySpin.Models
 {
     public class RepoService
     {
-        public IEnumerable<Spin> SpinRepository = new List<Spin>();
+        private List<Spin> _spinRepository = new List<Spin>();
+        
 
+        public IEnumerable<Spin> SpinRepository
+        {
+            get
+            {
+                return _spinRepository;
+            }
+        }      
+ 
         public void AddSpins(Spin spin)
         {
-            // changing to list first
-             List<Spin> spinsContainer = SpinRepository.ToList();
-            spinsContainer.Add(spin);
+            _spinRepository.Add(spin);
         }
     }
 }

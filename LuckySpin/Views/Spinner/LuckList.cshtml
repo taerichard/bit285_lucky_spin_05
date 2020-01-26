@@ -1,25 +1,25 @@
-﻿@model IEnumerable<LuckySpin.Models.RepoService>
-@{
-    ViewData["Title"] = "LuckList";
-    Layout = "_Layout";
-}
-
-
-
-
-<h2>All Your Luck</h2>
-<table>
+﻿@model IEnumerable<LuckySpin.Models.Spin>
+ 
+      @{ViewData["Title"] = "LuckList";
+          Layout = "_Layout";}
+ 
+ 
+ <table>
     <thead>
         <tr>
             <th>Luck</th>
             <th>Result</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach(LuckySpin.Models.Spin spin in Model)
         {
-            <td>spin.</td>
+            <tr>
+                <td>@spin.Luck</td>
+                <td>@spin.IsWinner</td>
+            </tr>
         }
     </tbody>
 </table>
+
+ 
